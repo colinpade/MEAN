@@ -26,9 +26,10 @@ var theEarth = (function() {
 module.exports.locationsListByDistance = function(req, res) { 
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
+  var maxDistance = parseFloat(req.query.maxDistance);
   console.log('lng: '+lng);
   console.log('lat: '+lat);
-  var maxDistance = parseFloat(req.query.maxDistance);
+  console.log('max d: '+maxDistance);
   var point = {
     type: "Point",
     coordinates: [lng, lat]
@@ -38,7 +39,7 @@ module.exports.locationsListByDistance = function(req, res) {
     maxDistance: theEarth.getRadsFromDistance(maxDistance),
     num: 10
   };
-  if (!lng || !lat || !maxDistance) {
+  if ((!lng && lng!==0) || (!lat && lat!==0)  || !maxDistance) {
     console.log('locationsListByDistance missing params');
     sendJSONresponse(res, 404, {
       "message": "lng, late and maxDistance query params are all required"
@@ -60,6 +61,10 @@ module.exports.locationsListByDistance = function(req, res) {
 };
 
 var buildLocationList = function(req, res, results, stats) {
+  //console.log('req: ',req);
+  //console.log('res: ',res);
+  //console.log('results: ',results);
+  //console.log('stats: ',stats);
   var locations = [];
   results.forEach(function(doc) {
     locations.push({
