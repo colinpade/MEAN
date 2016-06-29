@@ -1,0 +1,5 @@
+this tells you all the directives services registered with your angular app
+
+angular.module('loc8rApp')['_invokeQueue'].forEach(function(value){ 
+    console.log(value[1] + ": " + value[2][0]);
+})
