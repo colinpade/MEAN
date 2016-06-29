@@ -9,7 +9,7 @@ function ratingStars() {
     scope: {
       thisRating: '=rating'
     },
-    templateURL: '/common/directives/ratingStars/ratingStars.template.html'
+    templateURL: '/common/directive/ratingStars/ratingStars.template.html'
   };
 }
 })();
