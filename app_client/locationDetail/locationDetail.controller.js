@@ -24,6 +24,17 @@
       var modalInstance = $uibModal.open({
         templateUrl: '/reviewModal/reviewModal.view.html',
         controller: 'reviewModalCtrl as vm',
+        resolve: {
+          locationData: function () {
+            return {
+              locationid : vm.locationid,
+              locationName : vm.data.location.name
+            };
+          }
+        }
+      });
+      modalInstance.result.then(function (data) {
+        vm.data.location.reviews.push(data);
       });
     };
   }
