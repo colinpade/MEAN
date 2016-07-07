@@ -19,7 +19,7 @@ module.exports.reviewsCreate = function (req, res) {
             if (err) {
               sendJsonResponse(res, 400, err);
             } else {
-              doAddReview(req, res, location, username);
+              doAddReview(req, res, location, userName);
             }
           }
         );
