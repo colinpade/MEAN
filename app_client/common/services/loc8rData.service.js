@@ -6,7 +6,8 @@ angular
 loc8rData.$inject = ['$http', 'authentication'];
 function loc8rData ($http, authentication) {
   var locationByCoords = function (lat, lng) {
-    return $http.get('/api/locations?lng='+lng+'&lat='+lat+'&maxDistance=20000000');
+//###TODO### get this working with inputs for all browsers    return $http.get('/api/locations?lng='+lng+'&lat='+lat+'&maxDistance=20000000');
+    return $http.get('/api/locations?lng=-122.4532946&lat=37.7816621&maxDistance=20000000');
   };
 
   var locationById = function(locationid) {
