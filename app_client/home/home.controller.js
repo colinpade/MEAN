@@ -13,12 +13,18 @@ function homeCtrl ($scope, loc8rData, geolocation) {
   vm.sidebar = {
     content: 'Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you\'re looking for.'
   };
-  vm.message = "Checking your location";
-  vm.getData = function (position) {
-//    var lat = position.coords.latitude,
-//        lng = position.coords.longitude;
-      var lat = 37.7749,
-          lng = 122.4194;
+  vm.message = "loading locations";
+  loc8rData.locationByCoords(0,0)
+    .success(function(data) {
+      vm.message = data.length > 0 ? "" : "No locations found nearby";
+      vm.data = { locations: data };
+    })
+    .error(function(e) {
+      vm.message = "Sorry, something's gone wrong";
+    });
+/*  vm.getData = function (position) {
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude;
     vm.message = "Searching for nearby places";
     loc8rData.locationByCoords(lat, lng)
       .success(function(data) {
@@ -41,7 +47,7 @@ function homeCtrl ($scope, loc8rData, geolocation) {
     });
   };
 
-  geolocation.getPosition(vm.getData, vm.showError, vm.noGeo);
+  geolocation.getPosition(vm.getData, vm.showError, vm.noGeo);*/
 
 }
 })();
