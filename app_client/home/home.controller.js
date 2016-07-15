@@ -15,8 +15,10 @@ function homeCtrl ($scope, loc8rData, geolocation) {
   };
   vm.message = "Checking your location";
   vm.getData = function (position) {
-    var lat = position.coords.latitude,
-        lng = position.coords.longitude;
+//    var lat = position.coords.latitude,
+//        lng = position.coords.longitude;
+      var lat = 37.7749,
+          lng = 122.4194;
     vm.message = "Searching for nearby places";
     loc8rData.locationByCoords(lat, lng)
       .success(function(data) {
